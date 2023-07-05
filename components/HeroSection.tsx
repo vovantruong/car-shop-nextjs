@@ -19,7 +19,7 @@ const HeroSection = () => {
                 </p>
                 <CustomButton
                     title="Explore Cars"
-                    containerStyle="bg-primary-blue text-white rounded-full mt-10 font-medium hover:opacity-70 transition-opacity"
+                    containerStyles="bg-primary-blue text-white rounded-full mt-10 font-medium hover:opacity-70 transition-opacity"
                     handleClick={handleScroll}
                     type='button'
                     disabled={false}
@@ -33,8 +33,8 @@ const HeroSection = () => {
                         fill
                         className='object-contain'
                     />
-                    <div className="hero__image-overlay"></div>
                 </div>
+                <div className="hero__image-overlay"></div>
             </div>
         </div>
     )

@@ -6,7 +6,7 @@ import { Combobox, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { manufacturers } from '@/constants'
 
-const SearchManufacturer: React.FC<SearchManufacturerProps> = ({ manufacturer, setManufacturer }) => {
+const SearchManufacturer: React.FC<SearchManufacturerProps> = ({ selected, setSelected }) => {
     const [query, setQuery] = useState('')
 
     const filterManufacturers = query === ''
@@ -19,7 +19,7 @@ const SearchManufacturer: React.FC<SearchManufacturerProps> = ({ manufacturer, s
 
     return (
         <div className='search-manufacturer'>
-            <Combobox value={manufacturer} onChange={setManufacturer}>
+            <Combobox value={selected} onChange={setSelected}>
                 <div className='relative w-full'>
                     <Combobox.Button className="absolute top-[14px]">
                         <Image
@@ -44,7 +44,9 @@ const SearchManufacturer: React.FC<SearchManufacturerProps> = ({ manufacturer, s
                         leaveTo='opacity-0'
                         afterLeave={() => setQuery('')}
                     >
-                        <Combobox.Options>
+                        <Combobox.Options
+                            className="dropdown-manufacturer"
+                        >
                             {filterManufacturers.map(item => (
                                 <Combobox.Option
                                     value={item}

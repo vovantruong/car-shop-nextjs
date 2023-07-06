@@ -11,16 +11,22 @@
 	font-family: 'Manrope', sans-serif;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.custom-filter__options::-webkit-scrollbar,
+.dropdown-manufacturer::-webkit-scrollbar {
 	width: 10px;
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+.custom-filter__options::-webkit-scrollbar-track,
+.dropdown-manufacturer:-webkit-scrollbar-track {
 	background: #ffffff;
 	border-radius: 0 10px 10px 0;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+.custom-filter__options::-webkit-scrollbar-thumb,
+.dropdown-manufacturer::-webkit-scrollbar-thumb {
 	border-radius: 5px;
 	background: #eeeeee;
 	border: 2.5px solid #ffffff;
@@ -169,6 +175,7 @@ body::-webkit-scrollbar-thumb {
 .custom-filter__options {
 	@apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
 }
+
 /* END: Custom Filter styles */
 
 /* START: Footer styles */
@@ -232,3 +239,6 @@ body::-webkit-scrollbar-thumb {
 	@apply cursor-default select-none py-2 pl-10 pr-4;
 }
 /* END: search manufacturer styles */
+.dropdown-manufacturer {
+	@apply absolute w-full z-[100] bg-white shadow-lg rounded-md overflow-y-auto max-h-[450px];
+}

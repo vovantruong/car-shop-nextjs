@@ -6,7 +6,7 @@ import { fetchCars } from "@/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+export default function Home() {
     const [allCars, setAllCars] = useState([])
     const [loading, setLoading] = useState(false)
     //search states
@@ -44,8 +44,6 @@ const Home = () => {
         getCars();
     }, [fuel, year, limit, manufacturer, model])
 
-    const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
-
 
     return (
         <main className="overflow-hidden">
@@ -70,8 +68,8 @@ const Home = () => {
                 {allCars.length > 0 ? (
                     <section>
                         <div className="home__cars-wrapper">
-                            {allCars?.map(car => (
-                                <CarCard car={car} />
+                            {allCars?.map((car, i) => (
+                                <CarCard car={car} key={i} />
                             ))}
                         </div>
 
@@ -90,7 +88,6 @@ const Home = () => {
                 ) : (
                     <div className="home__error-container">
                         <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-                        {/* <p>{allCars?.message}</p> */}
                     </div>
                 )}
 
@@ -98,6 +95,3 @@ const Home = () => {
         </main>
     )
 }
-
-
-export default Home

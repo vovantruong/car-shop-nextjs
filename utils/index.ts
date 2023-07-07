@@ -32,9 +32,8 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
     return rentalRatePerDay.toFixed(0)
 }
 
-export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+export const generateCarImageUrl = (car: CarProps, angle?: string, paintId?: string) => {
     const url = new URL('https://cdn.imagin.studio/getimage')
-
     const { make, year, model } = car;
 
     url.searchParams.append('customer', 'copyright-imaginstudio');
@@ -43,8 +42,25 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
     url.searchParams.append('zoomType', 'fullscreen');
     url.searchParams.append('modelYear', `${year}`);
     url.searchParams.append('angle', `${angle}`);
+    url.searchParams.append('paintId', `${paintId}`);
 
     return `${url}`
+}
+
+export const generateCarPaintsList = async (car: CarProps) => {
+    const { make, model } = car;
+
+    const response = await fetch(`https://cdn.imagin.studio/getPaints?customer=copyright-imaginstudio&make=${make}&modelFamily=${model.split(' ')[0]}&target=car`)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => {
+            return error
+        });
+
+
+    return response
 }
 
 export const updateSearchParams = (type: string, value: string) => {

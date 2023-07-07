@@ -3,7 +3,7 @@
 import { CarProps } from '@/types';
 import { calculateCarRent, generateCarImageUrl } from '@/utils';
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomButton from './CustomButton';
 import CarDetails from './CarDetails';
 
@@ -17,6 +17,8 @@ const CarCard: React.FC<CarCarPprops> = ({ car }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const carRent = calculateCarRent(city_mpg, year)
+
+
 
     return (
         <div className='car-card group'>

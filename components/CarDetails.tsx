@@ -5,7 +5,7 @@ import React, { Fragment } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image';
-import { generateCarImageUrl } from '@/utils';
+import { generateCarImageUrl, generateCarPaintsList } from '@/utils';
 
 export interface CarDetailsProps {
     isOpen: boolean;
@@ -14,6 +14,20 @@ export interface CarDetailsProps {
 }
 
 const CarDetails: React.FC<CarDetailsProps> = ({ isOpen, closeModal, car }) => {
+
+    const getPaints = async () => {
+        try {
+            const { paintData } = await generateCarPaintsList(car);
+            console.log(paintData);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+
+
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>

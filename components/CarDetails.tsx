@@ -1,7 +1,7 @@
 'use client';
 
 import { CarProps } from '@/types';
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image';
@@ -14,17 +14,29 @@ export interface CarDetailsProps {
 }
 
 const CarDetails: React.FC<CarDetailsProps> = ({ isOpen, closeModal, car }) => {
+    const [paintData, setPaintData] = useState([])
 
     const getPaints = async () => {
         try {
             const { paintData } = await generateCarPaintsList(car);
-            console.log(paintData);
+            // console.log(paintData.paintCombinations?.filter((item: any, index: number) => item.mapped[index].available === true));
+
+            // setPaintData(paintData)
+            console.log(paintData.paintCombinations);
+
 
         } catch (error) {
             console.log(error);
 
         }
     }
+
+    useEffect(() => {
+        getPaints()
+    }, [car])
+
+    // console.log(paintData);
+
 
 
 
